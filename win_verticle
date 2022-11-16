@@ -1,0 +1,19 @@
+public void win_verticle(int turn) {
+		boolean win = false;
+		int count = 0;
+		
+		
+		for (col = 1; col < 16	; col++) {
+			for (row = 1; row < 15; row++)
+				if (board[row][col] == turn && board[row][col] == board[row+1][col]) {
+					count++;
+				}
+			
+			if (count < 4)
+				count = 0;
+			
+		}
+		if (count == 4)
+			JOptionPane.showMessageDialog(null, "플레이어" + turn + "승리!");		
+				
+	}
