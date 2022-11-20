@@ -11,7 +11,10 @@ class myPanel extends JPanel implements ActionListener{
 	int omok[][] = new int[SIZE][SIZE];
 	int turn = 0;
 	int win = 0;
-	
+
+    private JLabel label_1 = new JLabel();
+	private JLabel order = new JLabel();
+
 	public myPanel() {
 		setLayout(null);
 		setBackground(Color.LIGHT_GRAY);
@@ -30,15 +33,39 @@ class myPanel extends JPanel implements ActionListener{
 				add(btn[i][j]);				
 			}
 		}		
-		restart.setBounds(100+17*8, 100+17*22 +50, 100, 50);
+		restart.setBounds(100+17*8, 100+17*22, 100, 50);
 		restart.addActionListener(this);
 		restart.setText("다시 시작");
 		add(restart);
 		
 		result.setBounds(100+17*8, 100+17*9, 100, 50);
 		result.setBackground(Color.GREEN);
+
+		label_1.setBounds(180, 30, 1000, 80);
+		add(label_1);
+		order.setBounds(190, 50, 1000, 80);
+		add(order);
 	}
 	
+	public void update() {
+		int player;
+		if(win==0) {
+			label_1.setText("환영합니다! 즐거운 오목 게임 되십시오!");
+			if(turn%2==0) {
+				player = 1;
+				order.setText("이번 차례는 플레이어" + player + " 차례입니다.");
+			}
+			else {
+				player = 2;
+				order.setText("이번 차례는 플레이어" + player + " 차례입니다.");
+			}
+		}
+		else {
+			label_1.setText("플레이어"+win+"이(가) 이겼습니다! 축하합니다!!");
+			order.setText(" ");
+		}
+	}
+
 	public void Win() {
 		int check =0;		
 		for(int i=2; i<SIZE-2; i++) {
@@ -153,7 +180,9 @@ public class gui {
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(mp);
-		
+		while(true) {
+			mp.update();
+		}	
 
 	}
 }

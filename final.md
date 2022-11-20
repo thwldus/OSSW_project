@@ -3,10 +3,11 @@ import javax.swing.*;
 public class Board {
 
 	private int[][] board = new int[16][16];
-    private int row;
+
+	private int row;
 	private int col;
-	private int turn;	
-	
+	private int turn;
+
 	public Board() {
 		for(int i=0; i<16; i++) 
 			for(int j=0; j<16;j++) 
@@ -66,10 +67,8 @@ public class Board {
 		else
 			turn = 1;
 	}
-
+	
 	public int turn() { return turn; }
-
-
 
 	public static void main(String[] args) {
 		Board b = new Board();
