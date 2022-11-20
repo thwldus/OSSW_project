@@ -7,7 +7,7 @@ class myPanel extends JPanel implements ActionListener{
 	JButton btn[][];
 	JButton restart;
 	JButton result;
-	final int SIZE = 30;
+	final int SIZE = 20;
 	int omok[][] = new int[SIZE][SIZE];
 	int turn = 0;
 	int win = 0;
@@ -24,18 +24,18 @@ class myPanel extends JPanel implements ActionListener{
 		for(int i=0; i<SIZE; i++) {
 			for(int j=0; j<SIZE; j++) {
 				btn[i][j] = new JButton();
-				btn[i][j].setBounds(200+17*(j+1), 200+17*(i+1), 17, 17);
+				btn[i][j].setBounds(100+17*(j+1), 100+17*(i+1), 17, 17);
 				btn[i][j].setBackground(getBackground());
 				btn[i][j].addActionListener(this);
 				add(btn[i][j]);				
 			}
 		}		
-		restart.setBounds(100+17*31, 200+17*31 +50, 100, 50);
+		restart.setBounds(100+17*8, 100+17*22 +50, 100, 50);
 		restart.addActionListener(this);
 		restart.setText("다시 시작");
 		add(restart);
 		
-		result.setBounds(140+17*16, 200+17*16, 100, 50);
+		result.setBounds(100+17*8, 100+17*9, 100, 50);
 		result.setBackground(Color.GREEN);
 	}
 	
