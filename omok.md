@@ -120,7 +120,7 @@ class myPanel extends JPanel implements ActionListener{
 				if(turn %2 ==0) {
 					if(omok[i][j] ==0) {
 						if(e.getSource() == btn[i][j]) {
-							btn[i][j].setBackground(Color.WHITE);
+							btn[i][j].setBackground(Color.BLACK);
 							omok[i][j] = 1;
 							turn +=1;
 						}
@@ -128,7 +128,7 @@ class myPanel extends JPanel implements ActionListener{
 				}else if(turn %2 ==1) {
 					if(omok[i][j] ==0) {
 						if(e.getSource() == btn[i][j]) {
-							btn[i][j].setBackground(Color.BLACK);
+							btn[i][j].setBackground(Color.WHITE);
 							omok[i][j] = 2;
 							turn +=1;
 						}
