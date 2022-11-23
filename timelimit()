@@ -1,4 +1,4 @@
-public void timelimit() {
+	public void timelimit() {
 		int count = 0;
 		if (turn % 2 == 0) {
 			for (int i = 10; i >= 1; i--) 
@@ -32,6 +32,7 @@ public void timelimit() {
 						e.printStackTrace();
 					}
 					count++;
+					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
 				}
 			if (count == 10) {
 				add(result);
