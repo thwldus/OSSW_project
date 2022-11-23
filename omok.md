@@ -11,7 +11,7 @@ class myPanel extends JPanel implements ActionListener{
 	int omok[][] = new int[SIZE][SIZE];
 	int turn = 0;
 	int win = 0;
-
+	int count = 0;
     private JLabel label_1 = new JLabel();
 	private JLabel order = new JLabel();
 
@@ -155,6 +155,8 @@ class myPanel extends JPanel implements ActionListener{
 			omok = new int[SIZE][SIZE];
 			turn = 0;
 			win = 0;
+			count = 0;
+			label_0.setText("제한시간 10초 남았습니다.");
 			//remove(result);
 		}
 		Win();
@@ -167,7 +169,56 @@ class myPanel extends JPanel implements ActionListener{
 		}
 	}
 }
-
+	public void timelimit() {
+		count = 0;
+		if (turn % 2 == 0) {
+			for (int i = 10; i >= 1; i--) 
+				
+				if (turn % 2 == 0) {
+					try {
+						Thread.sleep(1000);
+					}
+					catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					count++;
+					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
+				}
+			if (count == 10) {
+				add(result);
+				result.setText("시간초과 P2 승리");
+				omok = new int[SIZE][SIZE];
+				turn = 0;
+				win = 0;
+				
+			}
+		count = 0;
+		}
+		else if (turn % 2 == 1) {
+			for (int i = 10; i >= 1; i--) 
+				if (turn % 2 == 1) {
+					try {
+						Thread.sleep(1000);
+					}
+					catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					count++;
+					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
+				}
+			if (count == 10) {
+				add(result);
+				result.setText("시간초과 P1 승리");
+				omok = new int[SIZE][SIZE];
+				turn = 0;
+				win = 0;
+				count = 0;
+			}
+		}	
+		count = 0;
+	}
+	
+}
 
 public class gui {
 	public static void main(String[] args) {
@@ -181,6 +232,7 @@ public class gui {
 		frame.add(mp);
 		while(true) {
 			mp.update();
+			mp.timelimit();
 		}	
 
 	}
