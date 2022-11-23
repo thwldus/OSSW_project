@@ -77,10 +77,9 @@ class myPanel extends JPanel implements ActionListener{
 					}
 					if(omok[i][j] ==1 && omok[i-1][j] == 1 && omok[i-2][j] ==1 && omok[i+1][j]==1 && omok[i+2][j] ==1) {
 						check =1;
-					}else if(omok[i][j] ==1 && omok[i-1][j] == 1 && omok[i-2][j] ==1 && omok[i+1][j]==1 && omok[i+2][j] ==1) {
-						check = 2;
+					}else if(omok[i][j] ==2 && omok[i-1][j] == 2 && omok[i-2][j] ==2 && omok[i+1][j]==2 && omok[i+2][j] ==2) {						check = 2;
 				}
-			}
+          		}
 		}
 		
 		// "|" 대각선검사, 추가할 부분 몇개 더 있음. 
