@@ -170,7 +170,7 @@ class myPanel extends JPanel implements ActionListener{
 			result.setText("P2 승리!");
 		}
 	}
-}
+
 	public void timelimit() {
 		int count = 0;
 		if (turn % 2 == 0) {
