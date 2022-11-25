@@ -213,8 +213,8 @@ class myPanel extends JPanel implements ActionListener{
 			}
 		}
 		else if (turn % 2 == 1) {
+			time1.setValue(10);
 			for (int i = 10; i >= 1; i--)
-				time1.setValue(10);
 				if (turn % 2 == 1) {
 					try {
 						Thread.sleep(1000);
