@@ -15,6 +15,8 @@ class myPanel extends JPanel implements ActionListener{
     private JLabel label_1 = new JLabel(); //환영문구
 	private JLabel order = new JLabel();
 	private int on = 1; //진행중이면 1, 승패결정 시 0 
+    private JProgressBar time1 = new JProgressBar(JProgressBar.HORIZONTAL, 0,10);
+	private JProgressBar time2 = new JProgressBar(JProgressBar.HORIZONTAL, 0,10);
 
 	public myPanel() {
 		setLayout(null);
@@ -48,6 +50,23 @@ class myPanel extends JPanel implements ActionListener{
 		add(label_1);
 		order.setBounds(190, 50, 1000, 80);
 		add(order);
+	
+        JLabel p1 = new JLabel("◈Player 1◈");
+		p1.setBounds(25, 280, 80, 20);
+		add(p1);
+		time1.setForeground(Color.PINK);
+		time1.setBackground(getBackground());
+		time1.setBounds(20, 300, 80, 20);
+		time1.setValue(10);
+		add(time1);
+		JLabel p2 = new JLabel("◈Player 2◈");
+		p2.setBounds(480, 280, 80, 20);
+		add(p2);
+		time2.setForeground(Color.PINK);
+		time2.setBackground(getBackground());
+		time2.setBounds(475, 300, 80, 20);
+		time2.setValue(10);
+		add(time2);
 	}
 	
 	public void update() {
@@ -119,7 +138,7 @@ class myPanel extends JPanel implements ActionListener{
 		System.out.println();
 		
 	}
-	@Override
+	
 	public void actionPerformed(ActionEvent e) {
 		for(int i=0; i<SIZE; i++) {
 			for(int j=0; j<SIZE; j++) {
@@ -158,9 +177,9 @@ class myPanel extends JPanel implements ActionListener{
 			omok = new int[SIZE][SIZE];
 			turn = 0;
 			win = 0;
-			on = 1;
-			
+			on = 1;		
 		}
+
 		Win();
 		if(win ==1) {
 			add(result);
@@ -174,6 +193,7 @@ class myPanel extends JPanel implements ActionListener{
 	public void timelimit() {
 		int count = 0;
 		if (turn % 2 == 0) {
+		    time2.setValue(10);
 			for (int i = 10; i >= 1; i--) 	
 				if (turn % 2 == 0) {
 					try {
@@ -182,16 +202,19 @@ class myPanel extends JPanel implements ActionListener{
 					catch (InterruptedException e) {	}
 					count++;
 					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
+			        time1.setValue((10-count));
 				}
 			if (count == 10) {
 				add(result);
 				result.setText("시간초과 P2 승리");
 				win = 2;
 				on = 0;
+				time1.setValue(10);
 			}
 		}
 		else if (turn % 2 == 1) {
-			for (int i = 10; i >= 1; i--) 
+			for (int i = 10; i >= 1; i--)
+				time1.setValue(10);
 				if (turn % 2 == 1) {
 					try {
 						Thread.sleep(1000);
@@ -199,12 +222,14 @@ class myPanel extends JPanel implements ActionListener{
 					catch (InterruptedException e) {	}
 					count++;
 					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
+			        time2.setValue((10-count));
 				}
 			if (count == 10) {
 				add(result);
 				result.setText("시간초과 P1 승리");
 				win = 1;
 				on = 0;
+				time2.setValue(10);
 			}
 		}	
 	}
