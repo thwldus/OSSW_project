@@ -11,9 +11,10 @@ class myPanel extends JPanel implements ActionListener{
 	int omok[][] = new int[SIZE][SIZE];
 	int turn = 0;
 	int win = 0;
-	int count = 0;
-    private JLabel label_1 = new JLabel();
+	private JLabel label_0 = new JLabel(); //제한시간
+    private JLabel label_1 = new JLabel(); //환영문구
 	private JLabel order = new JLabel();
+	private int on = 1; //진행중이면 1, 승패결정 시 0 
 
 	public myPanel() {
 		setLayout(null);
@@ -41,7 +42,9 @@ class myPanel extends JPanel implements ActionListener{
 		result.setBounds(100+17*8, 100+17*9, 100, 50);
 		result.setBackground(Color.GREEN);
 
-		label_1.setBounds(180, 30, 1000, 80);
+		label_0.setBounds(220, 30, 1000, 80);
+		label_1.setBounds(180, 10, 1000, 80);
+		add(label_0);
 		add(label_1);
 		order.setBounds(190, 50, 1000, 80);
 		add(order);
@@ -50,6 +53,7 @@ class myPanel extends JPanel implements ActionListener{
 	public void update() {
 		int player;
 		if(win==0) {
+			label_0.setText("제한시간은 10초입니다.");
 			label_1.setText("환영합니다! 즐거운 오목 게임 되십시오!");
 			if(turn%2==0) {
 				player = 1;
@@ -61,6 +65,7 @@ class myPanel extends JPanel implements ActionListener{
 			}
 		}
 		else {
+			label_0.setText(" ");
 			label_1.setText("플레이어"+win+"이(가) 이겼습니다! 축하합니다!!");
 			order.setText(" ");
 		}
@@ -81,8 +86,7 @@ class myPanel extends JPanel implements ActionListener{
 				}
           		}
 		}
-		
-		// "|" 대각선검사, 추가할 부분 몇개 더 있음. 
+		 
 		for(int i=2; i<SIZE-2; i++) {
 			for(int j=2; j<SIZE-2; j++) {
 				if(omok[i][j] ==1 && omok[i-1][j-1] == 1 && omok[i-2][j-2] ==1 && omok[i+1][j+1]==1 && omok[i+2][j+2] ==1) {
@@ -92,8 +96,6 @@ class myPanel extends JPanel implements ActionListener{
 				}
 			}
 		}
-		
-		// "/" 방향 검사, 범위 추가해야함
 		
 		for(int i=2; i<SIZE-2; i++) {
 			for(int j=2; j<SIZE-2; j++) {
@@ -107,10 +109,14 @@ class myPanel extends JPanel implements ActionListener{
 		
 		if(check ==1) {
 			win =1;
+			on = 0;
 		}else if(check ==2) {
 			win =2;
+			on = 0;
 		}
-		
+		System.out.println("win: " + win);
+		System.out.println("on: " + on);
+		System.out.println();
 		
 	}
 	@Override
@@ -143,9 +149,6 @@ class myPanel extends JPanel implements ActionListener{
 			System.out.println();
 		}
 		
-		System.out.println("win: "+win);
-		System.out.println();
-		
 		if(e.getSource() == restart) {
 			for(int i=0; i<SIZE; i++) {
 				for(int j= 0; j<SIZE; j++) {
@@ -155,9 +158,8 @@ class myPanel extends JPanel implements ActionListener{
 			omok = new int[SIZE][SIZE];
 			turn = 0;
 			win = 0;
-			count = 0;
-			label_0.setText("제한시간 10초 남았습니다.");
-			//remove(result);
+			on = 1;
+			
 		}
 		Win();
 		if(win ==1) {
@@ -170,29 +172,23 @@ class myPanel extends JPanel implements ActionListener{
 	}
 }
 	public void timelimit() {
-		count = 0;
+		int count = 0;
 		if (turn % 2 == 0) {
-			for (int i = 10; i >= 1; i--) 
-				
+			for (int i = 10; i >= 1; i--) 	
 				if (turn % 2 == 0) {
 					try {
 						Thread.sleep(1000);
 					}
-					catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					catch (InterruptedException e) {	}
 					count++;
 					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
 				}
 			if (count == 10) {
 				add(result);
 				result.setText("시간초과 P2 승리");
-				omok = new int[SIZE][SIZE];
-				turn = 0;
-				win = 0;
-				
+				win = 2;
+				on = 0;
 			}
-		count = 0;
 		}
 		else if (turn % 2 == 1) {
 			for (int i = 10; i >= 1; i--) 
@@ -200,39 +196,38 @@ class myPanel extends JPanel implements ActionListener{
 					try {
 						Thread.sleep(1000);
 					}
-					catch (InterruptedException e) {
-						e.printStackTrace();
-					}
+					catch (InterruptedException e) {	}
 					count++;
 					label_0.setText("제한시간 "+(10-count)+"초 남았습니다.");
 				}
 			if (count == 10) {
 				add(result);
 				result.setText("시간초과 P1 승리");
-				omok = new int[SIZE][SIZE];
-				turn = 0;
-				win = 0;
-				count = 0;
+				win = 1;
+				on = 0;
 			}
 		}	
-		count = 0;
 	}
 	
+    public int on() { return on; }
+
 }
 
 public class gui {
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
 		myPanel mp = new myPanel();
-		
-		frame.setBounds(100, 100, 1000, 1000);
+		frame.setBounds(100, 100, 600, 600);
 		frame.setTitle("오목");
 		frame.setVisible(true);
 		frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
 		frame.add(mp);
 		while(true) {
+			while(mp.on()==1){
+		        mp.update();
+			    mp.timelimit();
+			}
 			mp.update();
-			mp.timelimit();
 		}	
 
 	}
