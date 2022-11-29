@@ -206,7 +206,13 @@ class myPanel extends JPanel implements ActionListener{
 				}
 			if (count == 10) {
 				add(result);
+				result.setVisible(true);
 				result.setText("시간초과 P2 승리");
+				try {
+					Thread.sleep(2000);
+				}
+				catch (InterruptedException e) {}
+				result.setVisible(false);
 				win = 2;
 				on = 0;
 				time1.setValue(10);
@@ -226,7 +232,13 @@ class myPanel extends JPanel implements ActionListener{
 				}
 			if (count == 10) {
 				add(result);
+				result.setVisible(true);
 				result.setText("시간초과 P1 승리");
+				try {
+					Thread.sleep(2000);
+				}
+				catch (InterruptedException e) {}
+				result.setVisible(false);
 				win = 1;
 				on = 0;
 				time2.setValue(10);
