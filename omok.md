@@ -25,6 +25,9 @@ class myPanel extends JPanel implements ActionListener{
 	private JLabel add2 = new JLabel();
 	private JLabel label_0 = new JLabel(); //제한시간
         private JLabel label_1 = new JLabel(); //환영문구
+	private JLabel label_2 = new JLabel(); //addtime
+
+
 	private JLabel order = new JLabel();
 	private int on = 1; //진행중이면 1, 승패결정 시 0 
     private JProgressBar time1 = new JProgressBar(JProgressBar.HORIZONTAL, 0,10);
@@ -72,11 +75,14 @@ class myPanel extends JPanel implements ActionListener{
 		result.setBounds(100+17*8, 100+17*9, 100, 50);
 		result.setBackground(Color.GREEN);
 
-		label_0.setBounds(220, 30, 1000, 80);
-		label_1.setBounds(180, 10, 1000, 80);
+		label_0.setBounds(220, 25, 1000, 80);
+		label_1.setBounds(180, 5, 1000, 80);
+		label_2.setBounds(200, 43, 1000, 80);
 		add(label_0);
 		add(label_1);
-		order.setBounds(190, 50, 1000, 80);
+		add(label_2);
+
+		order.setBounds(190, 60, 1000, 80);
 		add(order);
 
 		add1.setBounds(20,365, 90, 45);
@@ -121,6 +127,7 @@ class myPanel extends JPanel implements ActionListener{
 			label_0.setText(" ");
 			label_1.setText("플레이어"+win+"이(가) 이겼습니다! 축하합니다!!");
 			order.setText(" ");
+			label_2.setText(" ");
 		}
 	}
 
