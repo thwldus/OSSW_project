@@ -91,7 +91,7 @@ class myPanel extends JPanel implements ActionListener{
 		time1.setForeground(Color.PINK);
 		time1.setBackground(getBackground());
 		time1.setBounds(20, 300, 80, 20);
-		time1.setValue(10);
+		time1.setValue(startTime + timeplus);
 		add(time1);
 		JLabel p2 = new JLabel("◈Player 2◈");
 		p2.setBounds(480, 280, 80, 20);
@@ -99,7 +99,7 @@ class myPanel extends JPanel implements ActionListener{
 		time2.setForeground(Color.PINK);
 		time2.setBackground(getBackground());
 		time2.setBounds(475, 300, 80, 20);
-		time2.setValue(10);
+		time2.setValue(startTime + timeplus);
 		add(time2);
 	}
 	
@@ -244,6 +244,7 @@ class myPanel extends JPanel implements ActionListener{
 		int count = 0;
 		if (turn % 2 == 0) {
 		    time2.setValue(startTime + timeplus);
+		    timeplus = 0;
 			for (int i = startTime + timeplus; i >= 1; i--) 	
 				if (turn % 2 == 0) {
 					try {
@@ -270,6 +271,7 @@ class myPanel extends JPanel implements ActionListener{
 		}
 		else if (turn % 2 == 1) {
 			time1.setValue(startTime + timeplus);
+			timeplus = 0;
 			for (int i = startTime + timeplus; i >= 1; i--)
 				if (turn % 2 == 1) {
 					try {
