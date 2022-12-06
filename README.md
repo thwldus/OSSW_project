@@ -70,29 +70,34 @@
    - 버튼을 눌러서 10초의 추가시간을 얻었을때 제한시간 막대가 추가된 시간을 반영하도록 소스코드를 수정하였다.
    
 
-## 참조한 git 명령어
+## 사용한 git 명령어
 
- **팀원 모두 git clone 명령어를 통해 원격 저장소(GitHub)와 연동 후**
+ **1. git clone git@github.com:thwldus/project.git**
+     
  
-   ① git pull
-   
-    다른 팀원의 수정 사항과 진행 사항 등을 불러옴
+ **2. git pull**
+   - 자신의 코드를 최종코드에 반영하기 위해, 다른 팀원의 수정 사항과 진행 사항 등을 불러옴
+     
     
-   ② vim omok.md
-   
-    파일을 열어 분담 파트 관련 코드 수정
+ **3. vim omok.md**
+   - 파일을 열어 분담 파트 관련 코드 수정
     
-   ③ git add omok.md
-   
-    omok.md의 변경 사항을 stage에 이동
+ **4. git add omok.md**
+   - omok.md의 변경 사항을 stage에 이동
     
-   ④ git commit -m “(수정사항)” 
+ **5. git commit -m “(수정사항)”** 
+   - 수정 작업을 마치고 새로운 버전으로 정의
+ 
+ **6. git push**
+   - 변경 사항을 원격서버(GitHub)로 업로드
+  
+ **7. 추가로 사용한 git 명령어** 
+   - **git reset HEAD^**
+     
+      잘못된 코드를 commit한 것을 취소하기 위한 명령어로, 가장 최근의 commit하기 전 상태로 되돌리기 위해 
+   - **git commit --amend "(변경사항 메세지)"**
    
-    수정 작업을 마치고 새로운 버전으로 정의
-    
-   ⑤ git push
-   
-    변경 사항을 원격서버(GitHub)로 업로드
+      가장 마지막에 commit한 내용을 수정하기 위해 사용
     
     
 ## 학습보고서(시행착오 부분)
